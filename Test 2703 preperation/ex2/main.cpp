@@ -6,11 +6,11 @@ class Array{
     private:
     T* elem;
     int size;
-    int capcaity;
+    int capacity;
 
     void copy(const Array& a)
     {
-        delete[] this->elem;
+      //  delete[] this->elem;
         elem = new T[a.capcaity];
         for(int i =0 ; i< a.size;i++){
             elem[i] = a[i];
@@ -19,7 +19,7 @@ class Array{
         this->size = a.size;
     }
     public:
-    Array(): size (0), capcacity(10){
+    Array(): size (0), capacity(10){
         elem = new T[0];
     }
     ~Array(){
@@ -32,11 +32,11 @@ class Array{
         }
     }
 
-    T* operator[](unsigned int i){
+    T& operator[](unsigned int i){
         if(i>size ){
-            return nullptr;
+            throw std::overflow_error("too big") ;
         }
-        return &this->elem[i];
+        return this->elem[i];
     }
 
 
@@ -49,6 +49,9 @@ class Array{
 
 int main(){
 
+    Array<int> a;
+    a[0] = 1;
+    std::cout << a[0];
 
 
 

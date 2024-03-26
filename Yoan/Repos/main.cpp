@@ -57,6 +57,7 @@ int main(){
     for(int i =0;i<s.length();i++){
         bool isInList = false;    
         for(int j =0 ;j<digitsSize+1;j++){
+            if(digits[i].ch == '=') continue;
             if(digits[j].ch == s[i]){
                 isInList = true;
                 //char founded
