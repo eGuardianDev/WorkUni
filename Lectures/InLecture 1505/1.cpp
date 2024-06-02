@@ -8,7 +8,7 @@ class Set{
     virtual Set* copy() = 0;
     virtual void save(std::ostream& )const = 0;
 
-    friend  std::ostream& operator<< (std::ostream&out, const Set* data){
+    friend  std::ostream& operator<< (std::ostream&out, const Set* &data){
         data->save(out);
         return out;
     }
@@ -89,7 +89,7 @@ class SetUnion : public Set{
         this->class2= other.class2->copy();        
     }
     ~SetUnion() override{
-        delete class1;
+           delete class1;
         delete class2;
     }
     bool member(int x) const override{
@@ -106,13 +106,15 @@ class SetUnion : public Set{
 
 
 int main(){
-    Set *single1 = new Singleton(1);
+    Set *randomSet = new Singleton(1);
+    
+    std::cout << randomSet->member(1);
+    
+
+    UnionSet = new EmptySet();
+    
     Set *single2 = new Singleton(3);
-    Set *Unionset1 =new SetUnion(single1, single2);
-    Set *Unionset2 =new SetUnion(Unionset1, new EvenInts());
-    delete Unionset1;
-    delete single1;
-    delete single2;
-    std::cout << Unionset2;
+    
+    std::cout << single2;
     return 0;
 }
